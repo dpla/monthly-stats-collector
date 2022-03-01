@@ -1,5 +1,3 @@
-import Dependencies._
-
 ThisBuild / scalaVersion     := "2.13.7"
 ThisBuild / version          := "0.1.0-SNAPSHOT"
 ThisBuild / organization     := "dpla"
@@ -12,8 +10,7 @@ lazy val root = (project in file("."))
       "org.json4s" %% "json4s-core" % "4.0.4",
       "org.json4s" %% "json4s-jackson" % "4.0.4",
       "com.github.tototoshi" %% "scala-csv" % "1.3.10",
-      "software.amazon.awssdk" % "s3" % "2.17.130",
-      scalaTest % Test
+      "software.amazon.awssdk" % "s3" % "2.17.130"
     )
   )
 
