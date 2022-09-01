@@ -46,9 +46,15 @@ object Main extends App {
     (facetName, JObject(fields)) <- facets
     if facetName == "provider.name"
     (fieldName, JArray(fieldValues)) <- fields
-    if (fieldName == "terms")
-    JObject(List(JField("term", JString(name)), JField("count", JInt(count)))) <- fieldValues
-  } yield Seq(timestamp, name, count)
+    if fieldName == "terms"
+    fieldValue <- fieldValues
+  } yield fieldValue match {
+    case JObject(List(JField("count", JInt(count)), JField("term", JString(name)))) =>
+      Seq(timestamp, name, count)
+    case JObject(List(JField("term", JString(name)), JField("count", JInt(count)))) =>
+      Seq(timestamp, name, count)
+    case _ => throw new RuntimeException("Unable to parse api output")
+  }
 
   if (data.isEmpty)
     throw new RuntimeException("Didn't load any records!")
@@ -70,5 +76,5 @@ object Main extends App {
     .bucket(s3Bucket)
     .key(timestamp)
     .build
-  s3.putObject(putObjectRequest, RequestBody.fromString(csvString))
+  // s3.putObject(putObjectRequest, RequestBody.fromString(csvString))
 }
