@@ -10,7 +10,8 @@ lazy val root = (project in file("."))
       "org.json4s" %% "json4s-core" % "4.0.4",
       "org.json4s" %% "json4s-jackson" % "4.0.4",
       "com.github.tototoshi" %% "scala-csv" % "1.3.10",
-      "software.amazon.awssdk" % "s3" % "2.17.130"
+      "software.amazon.awssdk" % "s3" % "2.17.130",
+      "org.slf4j" % "slf4j-simple" % "1.7.30"
     )
   )
 
