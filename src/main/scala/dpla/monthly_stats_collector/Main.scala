@@ -76,5 +76,6 @@ object Main extends App {
     .bucket(s3Bucket)
     .key(timestamp)
     .build
-  // s3.putObject(putObjectRequest, RequestBody.fromString(csvString))
+
+  s3.putObject(putObjectRequest, RequestBody.fromString(csvString))
 }
